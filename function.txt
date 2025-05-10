@@ -1,0 +1,37 @@
+EvenOrOdd:
+	push ebp			;create a stack frame
+	mov ebp, esp			;make ebp point to the bottom of the stack
+
+	mov ax, WORD[ebp + 8]		;load ax with "number"
+	test ax, 1			;test if the lsb = 0 
+	jz even				;if lsb = 0 then jump to even. Otherwise, move to odd.
+odd:
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, msgOdd
+	mov edx, 6
+	int 0x80			;print "Odd."
+	leave				;clear local variables from the stack
+	ret
+even:
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, msgEven
+	mov edx, 7
+	int 0x80			;print "Even."
+	leave				;clear local variables from the stack
+	ret
+
+section .text
+	global _start:
+
+_start:
+	push WORD[number]		;make the value in "number" an argument
+	call EvenOrOdd
+	mov eax, 1
+	int 0x80
+
+section .data
+	number     dw     15
+	msgEven    db     0xa, "Even.", 0xa
+	msgOdd	   db     0xa, "Odd.", 0xa
