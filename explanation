@@ -1,9 +1,9 @@
-#Thought Process:
+Thought Process:
 
 After reviewing the lecture, I decided the easiest way to go about this (using stacks) would be to load the stack with the even number,
 load ax with it, and use the test instruction with the jz instruction that would lead to either printing even or odd in the output.
 
-#Challenges:
+Challenges:
 
 The only issue I had with this assignment was in the learning process where I got confused on why we set esp and ebp the same after pushing
 ebp, but I realized it's because we want to use ebp as a reference point. Other than that, I had no issue working with and correctly allocating
